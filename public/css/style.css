@@ -1,0 +1,61 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* Light gray background */
+  padding: 50px 20px; /* Add padding for a more comfortable layout */
+}
+
+/* Welcome Container */
+.welcome-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Max width for small devices */
+  margin: 0 auto; /* This ensures it is horizontally centered, but not the content inside */
+}
+
+/* Welcome Title */
+.welcome-title {
+  font-size: 2.5rem;
+  color: #000000; /* Black color */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Login Button */
+button.login-btn {
+  font-size: 1.2rem;
+  background-color: #000000; /* Black background */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Makes button take up the full width of its parent container */
+  margin-top: 20px;
+}
+
+button.login-btn:hover {
+  background-color: #333333; /* Darker black on hover */
+}
+
+
+
+
+
+
+
+
+
+
+

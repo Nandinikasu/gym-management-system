@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members - Gym Management</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+</head>
+<body>
+  <h1>Members</h1>
+
+  <div id="membersList">
+    <!-- List of members will be displayed here -->
+  </div>
+
+  <script type="module">
+    // Import Firebase modules
+    import { db } from './firebase-config.js';
+    import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+    // Fetch and display members
+    async function getMembers() {
+      const membersSnapshot = await getDocs(collection(db, "members"));
+      const membersList = document.getElementById("membersList");
+
+      membersSnapshot.forEach((doc) => {
+        const memberData = doc.data();
+        const memberElement = document.createElement("div");
+        memberElement.textContent = `Name: ${memberData.name}, Email: ${memberData.email}, Phone: ${memberData.phoneno}, Role: ${memberData.role}`;
+        membersList.appendChild(memberElement);
+      });
+    }
+
+    // Load members when page is ready
+    getMembers();
+  </script>
+</body>
+</html>

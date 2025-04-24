@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bills - Gym Management</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"> 
+</head>
+<body>
+  <h1>Bills</h1>
+
+  <div id="billsList">
+    <!-- List of bills will be displayed here -->
+  </div>
+
+  <script type="module">
+    // Import Firebase modules
+    import { db } from '/firebase-config.js';
+    import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+    // Fetch and display bills
+    async function getBills() {
+      const billsSnapshot = await getDocs(collection(db, "bills"));
+      const billsList = document.getElementById("billsList");
+
+      billsSnapshot.forEach((doc) => {
+        const billData = doc.data();
+        const billElement = document.createElement("div");
+        billElement.textContent = `Bill ID: ${billData.bill_id}, Amount: ${billData.amount}, Date: ${billData.date}`;
+        billsList.appendChild(billElement);
+      });
+    }
+
+    // Load bills when page is ready
+    getBills();
+  </script>
+</body>
+</html>

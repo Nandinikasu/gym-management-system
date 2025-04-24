@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - Gym Management</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+</head>
+<body>
+  <h1>Reports</h1>
+
+  <div id="reportsList">
+    <!-- List of reports will be displayed here -->
+  </div>
+
+  <script type="module">
+    // Import Firebase modules
+    import { db } from './firebase-config.js';
+    import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+    // Fetch and display reports
+    async function getReports() {
+      const reportsSnapshot = await getDocs(collection(db, "reports"));
+      const reportsList = document.getElementById("reportsList");
+
+      reportsSnapshot.forEach((doc) => {
+        const reportData = doc.data();
+        const reportElement = document.createElement("div");
+        reportElement.textContent = `Report Name: ${reportData.report_name}, Report Type: ${reportData.report_type}, Date Generated: ${reportData.date_generated}`;
+        reportsList.appendChild(reportElement);
+      });
+    }
+
+    // Load reports when page is ready
+    getReports();
+  </script>
+</body>
+</html>
